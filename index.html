@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kafe Menü</title>
+  <style>
+    .logo {
+      display: block;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin: 0 auto 15px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #f7f4ed;
+      color: #263b2d;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background: #2c4437;
+      color: #fff9ed;
+      text-align: center;
+      padding: 22px 20px;
+    }
+    header p {
+      color: #d8bd8a;
+      letter-spacing: 4px;
+      font-size: 10px;
+    }
+    header h1 {
+      font-family: Georgia, serif;
+      font-size: 40px;
+      font-weight: normal;
+      margin: 15px 0;
+    }
+    .menu {
+      max-width: 1050px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 10px 0 25px;
+    }
+    nav a {
+      flex-shrink: 0;
+      text-decoration: none;
+      color: #263b2d;
+      border: 1px solid #d6d9cc;
+      border-radius: 25px;
+      padding: 10px 15px;
+      font-size: 13px;
+    }
+    nav a:hover {
+      background: #203c2d;
+      color: white;
+    }
+    section {
+      margin: 25px 0 40px;
+      scroll-margin-top: 20px;
+    }
+    h2 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: 30px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .product {
+      background: #fffefa;
+      border: 1px solid #e7e2d6;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .product img {
+      width: 100%;
+      height: 165px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      margin: 0 auto;
+      background: #ffffff;
+    }
+    .info {
+      padding: 14px;
+    }
+    .info h3 {
+      font-size: 15px;
+      margin: 0 0 10px;
+    }
+    .price {
+      color: #587047;
+      font-weight: bold;
+    }
+    footer {
+      background: #2c4437;
+      color: #fff9ed;
+      text-align: center;
+      padding: 25px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      position: relative;
+    }
+    footer .imza {
+      position: absolute;
+      right: 15px;
+      bottom: 10px;
+      font-size: 12px;
+      letter-spacing: 0;
+      color: #d8bd8a;
+    }
+    /* Yukarı çık butonu */
+    #yukariButonu {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: #2e5540;
+      color: #fff9ed;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+    }
+    #yukariButonu:hover {
+      opacity: 0.85;
+    }
+    @media (max-width: 650px) {
+      .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .product img {
+        height: 125px;
+      }
+      .info {
+        padding: 10px;
+      }
+      header h1 {
+        font-size: 40px;
+      }
+      /* Mobilde yukarı çık butonu */
+      #yukariButonu {
+        width: 42px;
+        height: 42px;
+        right: 15px;
+        bottom: 15px;
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <img src="logo.jpg.jpg" alt="Kafe Logosu" class="logo">
+  <p>KAHVE • OYUN • SOHBET</p>
+  <h1>Menümüz</h1>
+</header>
+<main class="menu">
+  <nav>
+    <a href="#kahveler">Kahveler</a>
+    <a href="#soguk">Soğuk İçecekler</a>
+    <a href="#sicak">Çay ve Sıcak İçecekler</a>
+    <a href="#yiyecekler">Yiyecekler</a>
+    <a href="#tatlilar">Tatlılar</a>
+  </nav>
+  <div id="menu-alani"></div>
+</main>
+<footer>
+  GÜZEL ANLAR, GÜZEL LEZZETLER
+  <span class="imza">by NK</span>
+</footer>
+<!-- Yukarı çık butonu -->
+<button id="yukariButonu" onclick="yukariGit()" aria-label="Yukarı çık">
+  ↑
+</button>
+<script>
+const kategoriler = [
+  {
+    id: "kahveler",
+    ad: "Kahveler",
+    fotograf: "photo-1509042239860-f550ce710b93"
+  },
+  {
+    id: "soguk",
+    ad: "Soğuk İçecekler",
+    fotograf: "photo-1513558161293-cdaf765edfd7"
+  },
+  {
+    id: "sicak",
+    ad: "Çaylar ve Sıcak İçecekler",
+    fotograf: "photo-1544787219-7f47ccb76574"
+  },
+  {
+    id: "yiyecekler",
+    ad: "Yiyecekler",
+    fotograf: "photo-1525351484163-7529414344d8"
+  },
+  {
+    id: "tatlilar",
+    ad: "Tatlılar",
+    fotograf: "photo-1578985545062-69928b1d9587"
+  }
+];
+const alan = document.getElementById("menu-alani");
+async function menuYukle() {
+  try {
+    const yanit = await fetch(
+      "https://red-bonus-d53c.nursena16167.workers.dev/products"
+    );
+    if (!yanit.ok) {
+      throw new Error("Menü alınamadı.");
+    }
+    const urunler = await yanit.json();
+    alan.innerHTML = "";
+    kategoriler.forEach(kategori => {
+      const bolum = document.createElement("section");
+      bolum.id = kategori.id;
+      const baslik = document.createElement("h2");
+      baslik.textContent = kategori.ad;
+      bolum.appendChild(baslik);
+      const aciklama = document.createElement("p");
+      aciklama.textContent = kategori.aciklama;
+      bolum.appendChild(aciklama);
+      const urunAlani = document.createElement("div");
+      urunAlani.className = "products";
+      const kategoriUrunleri = urunler.filter(
+        urun => urun.category === kategori.ad
+      );
+      kategoriUrunleri.forEach(urun => {
+        const kart = document.createElement("article");
+        kart.className = "product";
+        const resim = document.createElement("img");
+        const yedekResim =
+          "https://images.unsplash.com/" +
+          kategori.fotograf +
+          "?auto=format&fit=crop&w=600&q=80";
+        resim.alt = urun.name;
+        resim.loading = "lazy";
+        if (urun.image_path) {
+          resim.src = urun.image_path;
+          resim.onerror = () => {
+            resim.onerror = null;
+            resim.src = yedekResim;
+          };
+        } else {
+          resim.src = yedekResim;
+        }
+        const bilgi = document.createElement("div");
+        bilgi.className = "info";
+        const isim = document.createElement("h3");
+        isim.textContent = urun.name;
+        const fiyat = document.createElement("div");
+        fiyat.className = "price";
+        fiyat.textContent = Number(urun.price) + " TL";
+        bilgi.appendChild(isim);
+        bilgi.appendChild(fiyat);
+        kart.appendChild(resim);
+        kart.appendChild(bilgi);
+        urunAlani.appendChild(kart);
+      });
+      bolum.appendChild(urunAlani);
+      alan.appendChild(bolum);
+    });
+  } catch (hata) {
+    console.error("Menü yükleme hatası:", hata);
+    alan.textContent =
+      "Menü şu anda yüklenemiyor. Lütfen daha sonra tekrar deneyin.";
+  }
+}
+menuYukle();
+/* Yukarı çık butonu */
+window.addEventListener("scroll", function () {
+  const buton = document.getElementById("yukariButonu");
+  if (window.scrollY > 300) {
+    buton.style.display = "block";
+  } else {
+    buton.style.display = "none";
+  }
+});
+function yukariGit() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+</script>
+</body>
+</html>
