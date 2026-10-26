@@ -220,7 +220,7 @@ const alan = document.getElementById("menu-alani");
 async function menuYukle() {
   try {
     const yanit = await fetch(
-      "https://red-bonus-d53c.nursena16167.workers.dev/products"
+      "https://yolustukids-api.yolustukids.workers.dev/products"
     );
     if (!yanit.ok) {
       throw new Error("Menü alınamadı.");
